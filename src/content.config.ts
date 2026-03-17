@@ -4,7 +4,7 @@ import { glob } from 'astro/loaders';
 const contentSchema = z.object({
   title: z.string(),
   date: z.string(),
-  youtubeId: z.string(),
+  youtubeId: z.string().optional(),
   desc: z.string(),
   number: z.string(),
   tag: z.string().optional(),
