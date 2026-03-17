@@ -1,0 +1,80 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>404 — This Page Has Died — Mr. Audio Feedback</title>
+<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #000;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    gap: 40px;
+  }
+
+  .game-image {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    width: min(825px, 100%);
+    height: auto;
+    display: block;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 12px 32px;
+    border: 2px solid #00aa00;
+    color: #00cc00;
+    font-family: 'VT323', monospace;
+    font-size: 26px;
+    text-decoration: none;
+    letter-spacing: 2px;
+    transition: all 0.2s;
+  }
+
+  .btn:hover {
+    background: #00aa00;
+    color: #000;
+    box-shadow: 0 0 20px rgba(0,170,0,0.5);
+  }
+
+  .btn:focus-visible {
+    outline: 2px solid #00cc00;
+    outline-offset: 4px;
+  }
+
+  /* CRT scanlines */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      0deg, transparent, transparent 2px,
+      rgba(0,0,0,0.25) 2px, rgba(0,0,0,0.25) 4px
+    );
+    pointer-events: none;
+    z-index: 9999;
+  }
+</style>
+</head>
+<body>
+
+  <img
+    src="/404-oregon-trl.png"
+    alt="Oregon Trail style pixel art scene. This page has died of dysentery."
+    class="game-image"
+  />
+
+  <a href="/" class="btn">RETURN TO HOMEPAGE</a>
+
+</body>
+</html>

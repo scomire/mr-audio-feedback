@@ -1,0 +1,116 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const signals = await getCollection('signals');
+  return signals.map(entry => ({
+    params: { slug: entry.id.replace(/\.md$/, '') },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { title, date, youtubeId, desc, number, tag } = entry.data;
+const signals = await getCollection('signals');
+const sorted = signals.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
+const index = sorted.findIndex(p => p.id === entry.id);
+const prev = sorted[index + 1] ?? null;
+const next = sorted[index - 1] ?? null;
+---
+
+<Base>
+
+<div class="container">
+
+  <!-- Header -->
+  <header class="content-header">
+    <!-- Breadcrumbs -->
+    <div class="content-breadcrumb">
+      <a href="/">/ home</a> / <a href="/signals">signals</a> / {entry.id.replace(/\.md$/, '')}
+    </div>
+    
+    <!-- Post heading -->
+    <div class="content-type">// SIGNAL_{number}</div>
+    <h1 class="content-title">{title}</h1>
+    <div class="content-meta">
+      <span>{date}</span>
+      <span class="dot">■</span>
+      <span>video + post</span>
+      <span class="dot">■</span>
+      <span style="color:var(--cyan)">{tag ?? 'SIGNAL'}</span>
+    </div>
+  </header>
+
+  <!-- Video -->
+  <section class="video-section" aria-label="Video">
+    <div class="video-label">
+      <span>seth@mraudiofeedback:~$</span> mpv --ytdl {youtubeId}
+    </div>
+    <div class="video-wrapper">
+      {youtubeId ? (
+        <iframe
+          src={`https://www.youtube.com/embed/${youtubeId}?rel=0`}
+          title={title}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        />
+      ) : (
+        <div class="video-placeholder">
+          <div class="video-placeholder-grid"></div>
+          <div style="width:48px;height:48px;border:2px solid #ffb700;display:flex;align-items:center;justify-content:center;color:#ffb700;font-size:20px;position:relative;z-index:1;">▶</div>
+          <p>VIDEO COMING SOON</p>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="section-divider">
+    <span>// READ THE POST</span>
+    <div class="divider-line"></div>
+  </div>
+
+  <!-- Post -->
+  <article class="post-content" id="post">
+    <Content />
+  </article>
+
+  <!-- Prev/Next nav -->
+  <nav class="content-nav" aria-label="Previous and next content">
+    <div class="content-nav-item">
+      {prev && (
+        <span>← PREVIOUS SIGNAL</span>
+        <div class="nav-thumbnail">
+          <a href={`/signals/${prev.id.replace(/\.md$/, '') }`}>
+            <img src={`https://img.youtube.com/vi/${prev.data.youtubeId}/mqdefault.jpg`} alt={prev.data.title} />
+          </a>
+        </div>
+        <div class="nav-title">
+          <a href={`/signals/${prev.id.replace(/\.md$/, '') }`}>
+            <h2>{prev.data.title}</h2>
+          </a>
+        </div>
+      )}
+    </div>
+    <div class="content-nav-item next">
+      {next && (
+        <div class="nav-direction next">NEXT SIGNAL →</div>
+        <div class="nav-thumbnail next">
+          <a href={`/signals/${next.id.replace(/\.md$/, '')}`}>
+            <img src={`https://img.youtube.com/vi/${next.data.youtubeId}/mqdefault.jpg`} alt={next.data.title} />
+          </a>
+        </div>
+        <div class="nav-title next">
+          <a href={`/signals/${next.id.replace(/\.md$/, '')}`}>
+            <h2>{next.data.title}</h2>
+          </a>
+        </div>
+      )}
+    </div>
+  </nav>
+
+</div>
+
+</Base>

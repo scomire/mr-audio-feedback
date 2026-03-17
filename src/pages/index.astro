@@ -1,0 +1,764 @@
+---
+import Base from '../layouts/Base.astro';
+
+const signals = [
+  {
+    type: "SIGNAL",
+    typeSlug: "signals",
+    number: "001",
+    title: "Why I'm Reviving This Channel (And What's Changing)",
+    desc: "Years of gear reviews led to a realization: the tech we buy is becoming increasingly restricted. This is why everything is changing — and what Mr. Audio Feedback is now about.",
+    date: "2025.02.17",
+    youtubeId: "Fy3Kgpbl8Mc",
+    slug: "why-im-reviving-this-channel",
+    thumbClass: "thumb-gradient--3"
+  }
+];
+
+const protocols = [
+  {
+    type: "PROTOCOL",
+    typeSlug: "protocols",
+    number: "002",
+    title: "How to Install ONLYOFFICE in Nextcloud in Less than Two Minutes",
+    desc: "Get a full self-hosted office suite running inside your Nextcloud instance. No subscriptions, no Google, no Microsoft — just your server, your files.",
+    date: "2025.02.14",
+    youtubeId: "Et4D223yJp8",
+    slug: "onlyoffice-nextcloud",
+    thumbClass: "thumb-gradient--1"
+  },
+  {
+    type: "PROTOCOL",
+    typeSlug: "protocols",
+    number: "001",
+    title: "Self-Host Nextcloud in 15 Minutes - Docker Compose Tutorial for Beginners",
+    desc: "Step-by-step: get Nextcloud running on your own hardware with Docker Compose. Own your files. No cloud subscriptions required.",
+    date: "2025.02.10",
+    youtubeId: "InGS69ODP3E",
+    slug: "nextcloud-docker-compose",
+    thumbClass: "thumb-gradient--2"
+  }
+];
+
+const allContent = [...signals, ...protocols].sort((a, b) => new Date(b.date.replace(/\./g, '-')) - new Date(a.date.replace(/\./g, '-')));
+const featured = allContent[0];
+---
+
+<Base title="Mr. Audio Feedback" description="Encouraging digital ownership. Self-hosting, physical media, right to repair, and practical digital sovereignty. No hype, no manifestos — just ways to take your digital life back.">
+  <a href="#latest" class="skip-link">Skip to content</a>
+
+  <!-- Boot Sequence -->
+  <div id="boot" class="boot">
+    <div class="boot__line">INITIALIZING MR. AUDIO FEEDBACK v1.0 ................... [OK]</div>
+    <div class="boot__line">Loading digital sovereignty modules ..................... [OK]</div>
+    <div class="boot__line">Mounting self-hosted filesystems ........................ [OK]</div>
+    <div class="boot__line">Purging third-party trackers ............................ [OK]</div>
+    <div class="boot__line">All systems nominal. You own this experience.</div>
+    <div class="boot__line">No algorithms. No feeds. No landlords.</div>
+    <div class="boot__line">MR. AUDIO FEEDBACK</div>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero__prompt">
+        <span>seth@mraudiofeedback</span>:~$ ./independence.sh --start
+      </div>
+      <h1 class="hero__title">
+        OWN YOUR<br /><span class="hero__title-line2">DIGITAL LIFE</span>
+      </h1>
+      <p class="hero__tagline">
+        Between software we only <em>"license"</em> and hardware designed to be unrepairable,
+        the virtues of true ownership are fading. This site is about moving from being a
+        <em>user</em> back to being an <em>owner</em>.
+        No hype, no manifestos — just practical ways to take your digital life back.
+      </p>
+      <div class="hero__pillars">
+        <a href="/signals" class="hero__pillar">📡 SIGNALS</a>
+        <a href="/protocols" class="hero__pillar">⚙️ PROTOCOLS</a>
+        <a href="/intercepts" class="hero__pillar">👁️ INTERCEPTS</a>
+        <a href="/artifacts" class="hero__pillar">📼 ARTIFACTS</a>
+        <a href="/dispatches" class="hero__pillar">🛠️ DISPATCHES</a>
+      </div>
+      <div class="hero__stats">
+        <div class="hero__stat">
+          <span class="hero__stat-value">0</span>
+          <span class="hero__stat-label">algorithms</span>
+        </div>
+        <div class="hero__stat">
+          <span class="hero__stat-value">0</span>
+          <span class="hero__stat-label">trackers</span>
+        </div>
+        <div class="hero__stat">
+          <span class="hero__stat-value">0</span>
+          <span class="hero__stat-label">ads</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Terminal -->
+  <div class="container">
+    <div class="terminal">
+      <div class="terminal__bar"></div>
+      <div class="terminal__inner">
+        <div class="terminal__line">
+          <span class="terminal__prompt">seth@mraudiofeedback:~$</span> <span class="terminal__cmd">content --help</span>
+        </div>
+        <div class="terminal__line">
+          <span class="terminal__cmd">Usage: content [TYPE] [ID]</span>
+        </div>
+        <div class="terminal__line">
+          <span class="terminal__cmd">Available content types:</span>
+        </div>
+        <table class="terminal__table">
+          <tr>
+            <td>
+              <div class="terminal__line">
+                <span class="terminal__hl">signals</span>
+              </div>
+            </td>
+            <td class="terminal__col2">
+              <div class="terminal__line">
+                <span class="terminal__cmd">Opinion and editorial. Big ideas broadcast into the void.</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="terminal__line">
+                <span class="terminal__hl">intercepts</span>
+              </div>
+            </td>
+            <td class="terminal__col2">
+              <div class="terminal__line">
+                <span class="terminal__cmd">Catching what others missed: dark patterns, manipulative UX, & fine print.</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="terminal__line">
+                <span class="terminal__hl">protocols</span>
+              </div>
+            </td>
+            <td class="terminal__col2">
+              <div class="terminal__line">
+                <span class="terminal__cmd">Tutorials and how-tos. Instructions for setting up systems & apps.</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="terminal__line">
+                <span class="terminal__hl">artifacts</span>
+              </div>
+            </td>
+            <td class="terminal__col2">
+              <div class="terminal__line">
+                <span class="terminal__cmd">Shared knowledge about physical media. DVDs, vinyl, books. Tangible things that survive.</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="terminal__line">
+                <span class="terminal__hl">dispatches</span>
+              </div>
+            </td>
+            <td class="terminal__col2">
+              <div class="terminal__line">
+                <span class="terminal__cmd">Field reports on right to repair, hands-on hardware, & things actually fixed.</span>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Latest -->
+  <section id="latest">
+    <div class="container">
+      <div class="section-header">
+        <h2>// LATEST</h2>
+        <div class="section-line"></div>
+        <div class="section-count">{featured.type}_{featured.number}</div>
+      </div>
+
+      <div class="featured">
+        <div class="featured__inner">
+          <div class="featured__thumb">
+            {featured.youtubeId ? (
+              <img
+                src={`https://img.youtube.com/vi/${featured.youtubeId}/maxresdefault.jpg`}
+                alt={featured.title}
+                loading="lazy"
+              />
+            ) : (
+              <div class={featured.thumbClass}>
+                <div class="featured__thumb-grid"></div>
+              </div>
+            )}
+            <div class="featured__thumb-scanlines"></div>
+            <a href={`/${featured.typeSlug}/${featured.slug}`} class="featured__play-link">
+              <div class="featured__play-icon">▶</div>
+            </a>
+          </div>
+          <div class="featured__body">
+            <div class="featured__tag">// {featured.type}</div>
+            <h2 class="featured__title">{featured.title}</h2>
+            <p class="featured__desc">{featured.desc}</p>
+            <a href={`/${featured.typeSlug}/${featured.slug}`} class="btn">WATCH + READ →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Archive -->
+  <section id="archive">
+    <div class="container">
+      <div class="section-header">
+        <h2>// ARCHIVE</h2>
+        <div class="section-line"></div>
+        <div class="section-count">ALL CONTENT</div>
+      </div>
+
+      <div class="tags">
+        <button class="tags__btn tags__btn--active">ALL</button>
+        <button class="tags__btn">SIGNAL</button>
+        <button class="tags__btn">PROTOCOL</button>
+        <button class="tags__btn">INTERCEPT</button>
+        <button class="tags__btn">ARTIFACT</button>
+        <button class="tags__btn">DISPATCH</button>
+      </div>
+
+      <div class="content-grid">
+        {allContent.map((ep) => (
+          <a href={`/${ep.typeSlug}/${ep.slug}`} class="card">
+            <div class="card-thumb">
+              {ep.youtubeId ? (
+                <img
+                  src={`https://img.youtube.com/vi/${ep.youtubeId}/maxresdefault.jpg`}
+                  alt={ep.title}
+                  loading="lazy"
+                />
+              ) : (
+                <div class={ep.thumbClass}>
+                  <div class="thumb-grid"></div>
+                </div>
+              )}
+              <div class="thumb-scanlines"></div>
+              <div class="play-icon">▶</div>
+              <div class="thumb-label">{ep.type}_{ep.number}</div>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-date">{ep.date}</span>
+                <span class="card-tag">{ep.type}</span>
+              </div>
+              <h3 class="card-title">{ep.title}</h3>
+              <p class="card-desc">{ep.desc}</p>
+              <div class="card-footer">
+                <span class="dot">■</span> {ep.videoLength}
+                <span class="dot">■</span> {ep.readLength}
+                <span class="dot">■</span> {ep.type}_{ep.number}
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <div class="section-header">
+        <h2>// WHOAMI</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="terminal">
+        <div class="terminal__bar"></div>
+        <div class="terminal__inner">
+          <div class="terminal__line">
+            <span class="terminal__prompt">seth@mraudiofeedback:~$</span> <span class="terminal__cmd">cat about.txt</span>
+          </div>
+          <div class="terminal__line">
+            <span class="terminal__out" style="color:var(--text);padding-left:0;line-height:2;">
+              I'm Seth. I spent years reviewing headphones and audio gear, but I've realized the tech we buy is becoming increasingly restricted.<br /><br />
+              Between software we only <span class="terminal__hl">"license"</span> and hardware designed to be unrepairable, the virtues of true ownership are fading.<br /><br />
+              This site is about moving from being a <span style="color:var(--amber)">user</span> back to being an <span style="color:var(--amber)">owner</span>.<br /><br />
+              Each signal, protocol, intercept, artifact, or dispatch is a video + a written post. Watch it or read it — your call. No algorithms deciding what you see next. No algorithm-based feed. Just a site you can bookmark.
+            </span>
+          </div>
+          <div class="terminal__line" style="margin-top:8px;">
+            <span class="terminal__prompt">seth@mraudiofeedback:~$</span> <span class="terminal__cmd">cat links.txt</span>
+          </div>
+          <div class="terminal__line">
+            <span class="terminal__out">→ <a href="https://youtube.com/@mraudiofeedback" target="_blank" style="color:var(--cyan);text-decoration:none;">youtube.com/@mraudiofeedback</a></span>
+          </div>
+          <div class="terminal__line">
+            <span class="terminal__out">→ <a href="/rss.xml" style="color:var(--cyan);text-decoration:none;">mraudiofeedback.com/rss.xml</a>  <span style="color:var(--amber-dim)">// subscribe via RSS — no algorithm required</span></span>
+          </div>
+          <div class="terminal__line">
+            <span class="terminal__prompt">seth@mraudiofeedback:~$</span> <span class="terminal__cmd">_<span class="blink">█</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* Page-specific styles - ONLY for homepage */
+
+  /* Boot sequence */
+  .boot {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    z-index: 9000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 60px;
+    animation: bootFade 0.5s ease 3.4s forwards;
+  }
+
+  @keyframes bootFade {
+    to {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+  .boot__line {
+    color: var(--amber);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 16px;
+    opacity: 0;
+    white-space: nowrap;
+  }
+
+  .boot__line:nth-child(1) {
+    animation: bootLine 0.1s ease 0.1s forwards;
+  }
+
+  .boot__line:nth-child(2) {
+    animation: bootLine 0.1s ease 0.5s forwards;
+  }
+
+  .boot__line:nth-child(3) {
+    animation: bootLine 0.1s ease 0.9s forwards;
+  }
+
+  .boot__line:nth-child(4) {
+    animation: bootLine 0.1s ease 1.3s forwards;
+  }
+
+  .boot__line:nth-child(5) {
+    animation: bootLine 0.1s ease 1.7s forwards;
+    color: var(--green);
+  }
+
+  .boot__line:nth-child(6) {
+    animation: bootLine 0.1s ease 2.1s forwards;
+    color: var(--text-dim);
+  }
+
+  .boot__line:nth-child(7) {
+    animation: bootLine 0.1s ease 2.5s forwards;
+    color: var(--cyan);
+    font-size: 26px;
+    font-family: 'VT323', monospace;
+    letter-spacing: 3px;
+  }
+
+  @keyframes bootLine {
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Hero */
+  .hero {
+    padding: 80px 0 60px;
+    border-bottom: 1px solid rgba(255, 183, 0, 0.1);
+  }
+
+  .hero__prompt {
+    color: var(--text-dim);
+    font-size: 16px;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+  }
+
+  .hero__prompt span {
+    color: var(--green);
+  }
+
+  .hero__title {
+    font-family: 'VT323', monospace;
+    font-size: clamp(48px, 7vw, 88px);
+    color: var(--amber);
+    line-height: 0.95;
+    text-shadow: 0 0 30px rgba(255, 183, 0, 0.4), 0 0 60px rgba(255, 183, 0, 0.15);
+    letter-spacing: 4px;
+    margin-bottom: 4px;
+  }
+
+  .hero__title .hero__title-line2 {
+    color: var(--cyan);
+    text-shadow: 0 0 30px rgba(0, 245, 255, 0.4);
+  }
+
+  .hero__tagline {
+    margin-top: 24px;
+    color: var(--text-dim);
+    font-size: 16px;
+    max-width: 600px;
+    border-left: 2px solid var(--amber-dim);
+    padding-left: 16px;
+    line-height: 1.8;
+  }
+
+  .hero__tagline em {
+    color: var(--amber);
+    font-style: normal;
+  }
+
+  .hero__pillars {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 32px;
+  }
+
+  .hero__pillar {
+    font-size: 16px;
+    letter-spacing: 2px;
+    padding: 4px 12px;
+    border: 1px solid var(--amber-dim);
+    color: var(--text-dim);
+    text-decoration: none;
+  }
+
+  .hero__pillar:hover {
+    border: 1px solid var(--cyan);
+    color: var(--cyan);
+  }
+
+  .hero__stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 40px;
+  }
+
+  .hero__stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .hero__stat-value {
+    font-family: 'VT323', monospace;
+    font-size: 32px;
+    color: var(--cyan);
+    text-shadow: 0 0 15px rgba(0, 245, 255, 0.5);
+    line-height: 1;
+  }
+
+  .hero__stat-label {
+    font-size: 14px;
+    color: var(--text-dim);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* Terminal */
+  .terminal {
+    background: #050503;
+    border: 1px solid var(--amber-dim);
+    margin: 60px 0;
+    position: relative;
+  }
+
+  .terminal::before {
+    content: '● ● ●';
+    position: absolute;
+    top: 10px;
+    left: 16px;
+    font-size: 14px;
+    color: var(--amber-dim);
+    letter-spacing: 4px;
+  }
+
+  .terminal__bar {
+    flex: 1;
+    height: 1px;
+    background: var(--amber-dim);
+    width: 100%;
+    margin-top: 45px;
+  }
+
+  .terminal__inner {
+    padding: 36px 24px;
+  }
+
+  .terminal__line {
+    margin-top: 2px;
+    color: var(--text-dim);
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  .terminal__prompt {
+    color: var(--green);
+  }
+
+  .terminal__cmd {
+    color: var(--text);
+  }
+
+  .terminal__out {
+    color: var(--amber-dim);
+    padding-left: 20px;
+    display: block;
+  }
+
+  .terminal__hl {
+    color: var(--cyan);
+  }
+
+  .terminal__col2 {
+    padding-left: 10px;
+  }
+
+  .terminal__table {
+    width: 100%;
+  }
+
+  .terminal__table td {
+    vertical-align: top;
+  }
+
+  /* Featured */
+  .featured {
+    margin-bottom: 2px;
+    background: var(--bg2);
+    border: 1px solid rgba(0, 245, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .featured__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+  }
+
+  .featured__thumb {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+  }
+
+  .featured__thumb img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7) saturate(0.6);
+    transition: filter 0.3s;
+  }
+
+  .featured:hover .featured__thumb img {
+    filter: brightness(0.85) saturate(0.8);
+  }
+
+  .featured__thumb-grid {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(255, 183, 0, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 183, 0, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .featured__thumb-scanlines {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.35) 2px,
+        rgba(0, 0, 0, 0.35) 4px);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .featured__play-icon {
+    width: 48px;
+    height: 48px;
+    border: 2px solid var(--amber);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--amber);
+    font-size: 18px;
+    box-shadow: 0 0 20px rgba(255, 183, 0, 0.3);
+    transition: all 0.2s;
+    position: relative;
+    z-index: 2;
+  }
+
+  .featured:hover .featured__play-icon {
+    transform: scale(1.1);
+    box-shadow: 0 0 40px rgba(255, 183, 0, 0.5);
+  }
+
+  .featured__play-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .featured__body {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-left: 1px solid rgba(0, 245, 255, 0.15);
+  }
+
+  .featured__tag {
+    font-size: 14px;
+    color: var(--cyan);
+    letter-spacing: 3px;
+    margin-bottom: 14px;
+  }
+
+  .featured__title {
+    font-family: 'VT323', monospace;
+    font-size: 32px;
+    color: var(--text);
+    line-height: 1.15;
+    margin-bottom: 14px;
+  }
+
+  .featured__desc {
+    font-size: 16px;
+    color: var(--text-dim);
+    line-height: 1.8;
+    margin-bottom: 28px;
+  }
+
+  /* Tags */
+  .tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+
+  .tags__btn {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 14px;
+    letter-spacing: 1px;
+    padding: 4px 12px;
+    border: 1px solid var(--amber-dim);
+    color: var(--text-dim);
+    background: none;
+    transition: all 0.2s;
+  }
+
+  .tags__btn:hover,
+  .tags__btn--active {
+    border-color: var(--amber);
+    color: var(--amber);
+    background: var(--amber-glow);
+  }
+
+  /* Thumbnail gradients */
+  .thumb-gradient--1 {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a0f00 100%);
+  }
+
+  .thumb-gradient--2 {
+    background: linear-gradient(135deg, #0a0a0a 0%, #001a1a 100%);
+  }
+
+  .thumb-gradient--3 {
+    background: linear-gradient(135deg, #0a0a0a 0%, #0a001a 100%);
+  }
+
+  /* Animation keyframes */
+  @keyframes glitch {
+    0%, 90%, 100% {
+      text-shadow: 0 0 30px rgba(255, 183, 0, 0.4);
+      transform: none;
+    }
+    92% {
+      transform: skewX(-1deg) translateX(2px);
+      text-shadow: -2px 0 var(--cyan), 2px 0 var(--magenta);
+    }
+    94% {
+      transform: skewX(1deg) translateX(-2px);
+      text-shadow: 2px 0 var(--cyan), -2px 0 var(--magenta);
+    }
+    96% {
+      transform: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero__title {
+      animation: glitch 7s ease infinite;
+    }
+  }
+
+  /* Media queries */
+  @media (max-width: 768px) {
+    .featured__inner {
+      grid-template-columns: 1fr;
+    }
+
+    .featured__body {
+      border-left: none;
+      border-top: 1px solid rgba(0, 245, 255, 0.15);
+      padding: 24px;
+    }
+
+    .hero__stats {
+      gap: 24px;
+    }
+
+    .boot {
+      padding: 32px;
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.tags__btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.tags__btn').forEach(b => b.classList.remove('tags__btn--active'));
+      this.classList.add('tags__btn--active');
+    });
+  });
+
+  function randomFlicker() {
+    const els = document.querySelectorAll('.hero__stat-value, .nav-logo');
+    const el = els[Math.floor(Math.random() * els.length)];
+    el.style.opacity = '0.5';
+    setTimeout(() => el.style.opacity = '1', 80);
+    setTimeout(randomFlicker, 4000 + Math.random() * 6000);
+  }
+  setTimeout(randomFlicker, 5000);
+</script>
