@@ -6,76 +6,83 @@ const signals = await getCollection('signals');
 const sorted = signals.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
 ---
 
-<Base title="signals" description="Step-by-step self-hosting tutorials and how-to guides. Own your stack.">
-<div class="container">
-  <header class="page-header">
-    <div class="page-breadcrumb">
-      <a href="/">/home</a>/signals
-    </div>
-    <h1 class="page-title">⚙️ signalS</h1>
-    <p class="page-desc">
-      Step-by-step tutorials and how-to guides for self-hosting, Docker, and owning your own stack.
-      Follow along and own your infrastructure.
-    </p>
-  </header>
+<Base title="Signals" description="Opinion, analysis, and hot takes on digital sovereignty, privacy, and owning your tech.">
 
-  <section class="content-section" id="content">
-    <div class="section-header">
-      <h2>// ALL signalS</h2>
-      <div class="section-line"></div>
-      <div class="section-count">{sorted.length} ENTRIES</div>
-    </div>
+  <div class="container">
 
-    {sorted.length > 0 ? (
-      <div class="content-grid">
-        {sorted.map((entry) => (
-          <a href={`/signals/${entry.id.replace(/\.md$/, '')}`} class="card">
-            <div class="card-thumb">
-              {entry.data.youtubeId ? (
-                <img
-                  src={`https://img.youtube.com/vi/${entry.data.youtubeId}/maxresdefault.jpg`}
-                  alt={entry.data.title}
-                  loading="lazy"
-                />
-              ) : (
-                <div class="thumb-grid"></div>
-              )}
-              <div class="thumb-scanlines"></div>
-              <div class="play-icon">▶</div>
-              <div class="thumb-label">signal_{entry.data.number}</div>
-            </div>
-            <div class="card-body">
-              <div class="card-meta">
-                <span class="card-date">{entry.data.date}</span>
-              </div>
-              <h2 class="card-title">{entry.data.title}</h2>
-              <p class="card-desc">{entry.data.desc}</p>
-              <div class="card-footer">
-                <span class="dot">■</span> read_more >>
-              </div>
-            </div>
-          </a>
-        ))}
+    <header class="page-header">
+      <div class="page-breadcrumb">
+        <a href="/">~/</a> / signals
       </div>
-    ) : (
-      <div class="empty-state">
-        <div class="empty-title">// NO ENTRIES YET</div>
-        <p>Check back soon — signals are being written.</p>
-      </div>
-    )}
-  </section>
+      <div class="page-type">// CONTENT TYPE</div>
+      <h1 class="page-title">📡 SIGNALS</h1>
+      <p class="page-desc">
+        Opinion, analysis, and hot takes on digital sovereignty, privacy, and owning your tech.
+      </p>
+    </header>
 
-  <div class="other-types">
-    <div class="section-header">
-      <h2>// EXPLORE OTHER TYPES</h2>
-      <div class="section-line"></div>
+    <section class="content-section" id="content">
+      <div class="section-header">
+        <h2>// ALL SIGNALS</h2>
+        <div class="section-line"></div>
+        <div class="section-count">{sorted.length} ENTRIES</div>
+      </div>
+
+      {sorted.length > 0 ? (
+        <div class="content-grid">
+          {sorted.map((entry) => (
+            <a href={`/signals/${entry.id.replace(/\.md$/, '')}`} class="card">
+              <div class="card-thumb">
+                {entry.data.youtubeId ? (
+                  <img
+                    src={`https://img.youtube.com/vi/${entry.data.youtubeId}/maxresdefault.jpg`}
+                    alt={entry.data.title}
+                    loading="lazy"
+                  />
+                ) : (
+                  <div class="thumb-grid"></div>
+                )}
+                <div class="thumb-scanlines"></div>
+                <div class="play-icon">▶</div>
+                <div class="thumb-label">signal_{entry.data.number}</div>
+              </div>
+              <div class="card-body">
+                <div class="card-meta">
+                  <span class="card-date">{entry.data.date}</span>
+                  <span class="card-tag">signal</span>
+                </div>
+                <h2 class="card-title">{entry.data.title}</h2>
+                <p class="card-desc">{entry.data.desc}</p>
+                <div class="card-footer">
+                  <span class="dot">■</span> watch
+                  <span class="dot">■</span> read
+                  <span class="dot">■</span> signal_{entry.data.number}
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <div class="empty-state">
+          <div class="empty-title">// NO ENTRIES YET</div>
+          <p>Check back soon — signals are being written.</p>
+        </div>
+      )}
+    </section>
+
+    <div class="other-types">
+      <div class="section-header">
+        <h2>// EXPLORE OTHER TYPES</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="type-links">
+        <a href="/protocols" class="type-link">⚙️ PROTOCOLS</a>
+        <a href="/intercepts" class="type-link">👁️ INTERCEPTS</a>
+        <a href="/artifacts" class="type-link">📼 ARTIFACTS</a>
+        <a href="/dispatches" class="type-link">🛠️ DISPATCHES</a>
+      </div>
     </div>
-    <div class="type-links">
-      <a href="/protocols" class="type-link">⚙️ PROTOCOLS</a>
-      <a href="/intercepts" class="type-link">👁️ INTERCEPTS</a>
-      <a href="/artifacts" class="type-link">📼 ARTIFACTS</a>
-      <a href="/dispatches" class="type-link">🛠️ DISPATCHES</a>
-    </div>
+
   </div>
-</div>
+
 </Base>
