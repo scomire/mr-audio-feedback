@@ -1,46 +1,21 @@
 ---
 import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
 
-const signals = [
-  {
-    type: "SIGNAL",
-    typeSlug: "signals",
-    number: "001",
-    title: "Why I'm Reviving This Channel (And What's Changing)",
-    desc: "Years of gear reviews led to a realization: the tech we buy is becoming increasingly restricted. This is why everything is changing — and what Mr. Audio Feedback is now about.",
-    date: "2025.02.17",
-    youtubeId: "Fy3Kgpbl8Mc",
-    slug: "why-im-reviving-this-channel",
-    thumbClass: "thumb-gradient--3"
-  }
-];
+const signals = await getCollection('signals');
+const protocols = await getCollection('protocols');
+const intercepts = await getCollection('intercepts');
+const artifacts = await getCollection('artifacts');
+const dispatches = await getCollection('dispatches');
 
-const protocols = [
-  {
-    type: "PROTOCOL",
-    typeSlug: "protocols",
-    number: "002",
-    title: "How to Install ONLYOFFICE in Nextcloud in Less than Two Minutes",
-    desc: "Get a full self-hosted office suite running inside your Nextcloud instance. No subscriptions, no Google, no Microsoft — just your server, your files.",
-    date: "2025.02.14",
-    youtubeId: "Et4D223yJp8",
-    slug: "onlyoffice-nextcloud",
-    thumbClass: "thumb-gradient--1"
-  },
-  {
-    type: "PROTOCOL",
-    typeSlug: "protocols",
-    number: "001",
-    title: "Self-Host Nextcloud in 15 Minutes - Docker Compose Tutorial for Beginners",
-    desc: "Step-by-step: get Nextcloud running on your own hardware with Docker Compose. Own your files. No cloud subscriptions required.",
-    date: "2025.02.10",
-    youtubeId: "InGS69ODP3E",
-    slug: "nextcloud-docker-compose",
-    thumbClass: "thumb-gradient--2"
-  }
-];
+const allContent = [
+  ...signals.map(e => ({ ...e.data, type: 'SIGNAL', typeSlug: 'signals', slug: e.id.replace(/\.md$/, '') })),
+  ...protocols.map(e => ({ ...e.data, type: 'PROTOCOL', typeSlug: 'protocols', slug: e.id.replace(/\.md$/, '') })),
+  ...intercepts.map(e => ({ ...e.data, type: 'INTERCEPT', typeSlug: 'intercepts', slug: e.id.replace(/\.md$/, '') })),
+  ...artifacts.map(e => ({ ...e.data, type: 'ARTIFACT', typeSlug: 'artifacts', slug: e.id.replace(/\.md$/, '') })),
+  ...dispatches.map(e => ({ ...e.data, type: 'DISPATCH', typeSlug: 'dispatches', slug: e.id.replace(/\.md$/, '') })),
+].sort((a, b) => new Date(b.date) - new Date(a.date));
 
-const allContent = [...signals, ...protocols].sort((a, b) => new Date(b.date.replace(/\./g, '-')) - new Date(a.date.replace(/\./g, '-')));
 const featured = allContent[0];
 ---
 
@@ -196,7 +171,7 @@ const featured = allContent[0];
                 loading="lazy"
               />
             ) : (
-              <div class={featured.thumbClass}>
+              <div class="thumb-gradient--1">
                 <div class="featured__thumb-grid"></div>
               </div>
             )}
@@ -226,17 +201,17 @@ const featured = allContent[0];
       </div>
 
       <div class="tags">
-        <button class="tags__btn tags__btn--active">ALL</button>
-        <button class="tags__btn">SIGNAL</button>
-        <button class="tags__btn">PROTOCOL</button>
-        <button class="tags__btn">INTERCEPT</button>
-        <button class="tags__btn">ARTIFACT</button>
-        <button class="tags__btn">DISPATCH</button>
+        <button class="tags__btn tags__btn--active" data-filter="ALL">ALL</button>
+        <button class="tags__btn" data-filter="SIGNAL">SIGNAL</button>
+        <button class="tags__btn" data-filter="PROTOCOL">PROTOCOL</button>
+        <button class="tags__btn" data-filter="INTERCEPT">INTERCEPT</button>
+        <button class="tags__btn" data-filter="ARTIFACT">ARTIFACT</button>
+        <button class="tags__btn" data-filter="DISPATCH">DISPATCH</button>
       </div>
 
       <div class="content-grid">
         {allContent.map((ep) => (
-          <a href={`/${ep.typeSlug}/${ep.slug}`} class="card">
+          <a href={`/${ep.typeSlug}/${ep.slug}`} class="card" data-type={ep.type}>
             <div class="card-thumb">
               {ep.youtubeId ? (
                 <img
@@ -245,7 +220,7 @@ const featured = allContent[0];
                   loading="lazy"
                 />
               ) : (
-                <div class={ep.thumbClass}>
+                <div class="thumb-gradient--1">
                   <div class="thumb-grid"></div>
                 </div>
               )}
@@ -261,8 +236,8 @@ const featured = allContent[0];
               <h3 class="card-title">{ep.title}</h3>
               <p class="card-desc">{ep.desc}</p>
               <div class="card-footer">
-                <span class="dot">■</span> {ep.videoLength}
-                <span class="dot">■</span> {ep.readLength}
+                <span class="dot">■</span> watch
+                <span class="dot">■</span> read
                 <span class="dot">■</span> {ep.type}_{ep.number}
               </div>
             </div>
@@ -312,8 +287,6 @@ const featured = allContent[0];
 </Base>
 
 <style>
-  /* Page-specific styles - ONLY for homepage */
-
   /* Boot sequence */
   .boot {
     position: fixed;
@@ -329,10 +302,7 @@ const featured = allContent[0];
   }
 
   @keyframes bootFade {
-    to {
-      opacity: 0;
-      pointer-events: none;
-    }
+    to { opacity: 0; pointer-events: none; }
   }
 
   .boot__line {
@@ -343,44 +313,16 @@ const featured = allContent[0];
     white-space: nowrap;
   }
 
-  .boot__line:nth-child(1) {
-    animation: bootLine 0.1s ease 0.1s forwards;
-  }
-
-  .boot__line:nth-child(2) {
-    animation: bootLine 0.1s ease 0.5s forwards;
-  }
-
-  .boot__line:nth-child(3) {
-    animation: bootLine 0.1s ease 0.9s forwards;
-  }
-
-  .boot__line:nth-child(4) {
-    animation: bootLine 0.1s ease 1.3s forwards;
-  }
-
-  .boot__line:nth-child(5) {
-    animation: bootLine 0.1s ease 1.7s forwards;
-    color: var(--green);
-  }
-
-  .boot__line:nth-child(6) {
-    animation: bootLine 0.1s ease 2.1s forwards;
-    color: var(--text-dim);
-  }
-
-  .boot__line:nth-child(7) {
-    animation: bootLine 0.1s ease 2.5s forwards;
-    color: var(--cyan);
-    font-size: 26px;
-    font-family: 'VT323', monospace;
-    letter-spacing: 3px;
-  }
+  .boot__line:nth-child(1) { animation: bootLine 0.1s ease 0.1s forwards; }
+  .boot__line:nth-child(2) { animation: bootLine 0.1s ease 0.5s forwards; }
+  .boot__line:nth-child(3) { animation: bootLine 0.1s ease 0.9s forwards; }
+  .boot__line:nth-child(4) { animation: bootLine 0.1s ease 1.3s forwards; }
+  .boot__line:nth-child(5) { animation: bootLine 0.1s ease 1.7s forwards; color: var(--green); }
+  .boot__line:nth-child(6) { animation: bootLine 0.1s ease 2.1s forwards; color: var(--text-dim); }
+  .boot__line:nth-child(7) { animation: bootLine 0.1s ease 2.5s forwards; color: var(--cyan); font-size: 26px; font-family: 'VT323', monospace; letter-spacing: 3px; }
 
   @keyframes bootLine {
-    to {
-      opacity: 1;
-    }
+    to { opacity: 1; }
   }
 
   /* Hero */
@@ -396,9 +338,7 @@ const featured = allContent[0];
     letter-spacing: 1px;
   }
 
-  .hero__prompt span {
-    color: var(--green);
-  }
+  .hero__prompt span { color: var(--green); }
 
   .hero__title {
     font-family: 'VT323', monospace;
@@ -425,10 +365,7 @@ const featured = allContent[0];
     line-height: 1.8;
   }
 
-  .hero__tagline em {
-    color: var(--amber);
-    font-style: normal;
-  }
+  .hero__tagline em { color: var(--amber); font-style: normal; }
 
   .hero__pillars {
     display: flex;
@@ -504,9 +441,7 @@ const featured = allContent[0];
     margin-top: 45px;
   }
 
-  .terminal__inner {
-    padding: 36px 24px;
-  }
+  .terminal__inner { padding: 36px 24px; }
 
   .terminal__line {
     margin-top: 2px;
@@ -515,13 +450,8 @@ const featured = allContent[0];
     line-height: 1.8;
   }
 
-  .terminal__prompt {
-    color: var(--green);
-  }
-
-  .terminal__cmd {
-    color: var(--text);
-  }
+  .terminal__prompt { color: var(--green); }
+  .terminal__cmd { color: var(--text); }
 
   .terminal__out {
     color: var(--amber-dim);
@@ -529,21 +459,10 @@ const featured = allContent[0];
     display: block;
   }
 
-  .terminal__hl {
-    color: var(--cyan);
-  }
-
-  .terminal__col2 {
-    padding-left: 10px;
-  }
-
-  .terminal__table {
-    width: 100%;
-  }
-
-  .terminal__table td {
-    vertical-align: top;
-  }
+  .terminal__hl { color: var(--cyan); }
+  .terminal__col2 { padding-left: 10px; }
+  .terminal__table { width: 100%; }
+  .terminal__table td { vertical-align: top; }
 
   /* Featured */
   .featured {
@@ -579,9 +498,7 @@ const featured = allContent[0];
     transition: filter 0.3s;
   }
 
-  .featured:hover .featured__thumb img {
-    filter: brightness(0.85) saturate(0.8);
-  }
+  .featured:hover .featured__thumb img { filter: brightness(0.85) saturate(0.8); }
 
   .featured__thumb-grid {
     position: absolute;
@@ -594,11 +511,7 @@ const featured = allContent[0];
   .featured__thumb-scanlines {
     position: absolute;
     inset: 0;
-    background: repeating-linear-gradient(0deg,
-        transparent,
-        transparent 2px,
-        rgba(0, 0, 0, 0.35) 2px,
-        rgba(0, 0, 0, 0.35) 4px);
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.35) 2px, rgba(0,0,0,0.35) 4px);
     pointer-events: none;
     z-index: 1;
   }
@@ -686,70 +599,47 @@ const featured = allContent[0];
   }
 
   /* Thumbnail gradients */
-  .thumb-gradient--1 {
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a0f00 100%);
-  }
+  .thumb-gradient--1 { background: linear-gradient(135deg, #0a0a0a 0%, #1a0f00 100%); }
+  .thumb-gradient--2 { background: linear-gradient(135deg, #0a0a0a 0%, #001a1a 100%); }
+  .thumb-gradient--3 { background: linear-gradient(135deg, #0a0a0a 0%, #0a001a 100%); }
 
-  .thumb-gradient--2 {
-    background: linear-gradient(135deg, #0a0a0a 0%, #001a1a 100%);
-  }
-
-  .thumb-gradient--3 {
-    background: linear-gradient(135deg, #0a0a0a 0%, #0a001a 100%);
-  }
-
-  /* Animation keyframes */
   @keyframes glitch {
-    0%, 90%, 100% {
-      text-shadow: 0 0 30px rgba(255, 183, 0, 0.4);
-      transform: none;
-    }
-    92% {
-      transform: skewX(-1deg) translateX(2px);
-      text-shadow: -2px 0 var(--cyan), 2px 0 var(--magenta);
-    }
-    94% {
-      transform: skewX(1deg) translateX(-2px);
-      text-shadow: 2px 0 var(--cyan), -2px 0 var(--magenta);
-    }
-    96% {
-      transform: none;
-    }
+    0%, 90%, 100% { text-shadow: 0 0 30px rgba(255, 183, 0, 0.4); transform: none; }
+    92% { transform: skewX(-1deg) translateX(2px); text-shadow: -2px 0 var(--cyan), 2px 0 var(--magenta); }
+    94% { transform: skewX(1deg) translateX(-2px); text-shadow: 2px 0 var(--cyan), -2px 0 var(--magenta); }
+    96% { transform: none; }
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    .hero__title {
-      animation: glitch 7s ease infinite;
-    }
+    .hero__title { animation: glitch 7s ease infinite; }
   }
 
-  /* Media queries */
   @media (max-width: 768px) {
-    .featured__inner {
-      grid-template-columns: 1fr;
-    }
-
-    .featured__body {
-      border-left: none;
-      border-top: 1px solid rgba(0, 245, 255, 0.15);
-      padding: 24px;
-    }
-
-    .hero__stats {
-      gap: 24px;
-    }
-
-    .boot {
-      padding: 32px;
-    }
+    .featured__inner { grid-template-columns: 1fr; }
+    .featured__body { border-left: none; border-top: 1px solid rgba(0, 245, 255, 0.15); padding: 24px; }
+    .hero__stats { gap: 24px; }
+    .boot { padding: 32px; }
   }
 </style>
 
 <script>
-  document.querySelectorAll('.tags__btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-      document.querySelectorAll('.tags__btn').forEach(b => b.classList.remove('tags__btn--active'));
-      this.classList.add('tags__btn--active');
+  const buttons = document.querySelectorAll('.tags__btn');
+  const cards = document.querySelectorAll('.card');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+
+      buttons.forEach(b => b.classList.remove('tags__btn--active'));
+      btn.classList.add('tags__btn--active');
+
+      cards.forEach(card => {
+        if (filter === 'ALL' || card.dataset.type === filter) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
     });
   });
 
