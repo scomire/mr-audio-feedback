@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
-const { title, date, youtubeId, desc, number, tag } = entry.data;
+const { title, date, youtubeId, image, desc, number, tag } = entry.data;
 const intercepts = await getCollection('intercepts');
 const sorted = intercepts.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
 const index = sorted.findIndex(p => p.id === entry.id);
