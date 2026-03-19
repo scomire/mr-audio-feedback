@@ -1,0 +1,45 @@
+---
+const { prev, next, typeSlug, typeLabel } = Astro.props;
+---
+<nav class="content-nav" aria-label="Previous and next content">
+  <div class="content-nav-item">
+    {prev && (
+      <span><a href={`/${typeSlug}/${prev.id.replace(/\.md$/, '')}`}>← PREVIOUS {typeLabel}</a></span>
+      <div class="nav-thumbnail">
+        <a href={`/${typeSlug}/${prev.id.replace(/\.md$/, '')}`}>
+          <img
+            src={prev.data.youtubeId
+              ? `https://img.youtube.com/vi/${prev.data.youtubeId}/mqdefault.jpg`
+              : prev.data.image}
+            alt={prev.data.title}
+          />
+        </a>
+      </div>
+      <div class="nav-title">
+        <a href={`/${typeSlug}/${prev.id.replace(/\.md$/, '')}`}>
+          <h2>{prev.data.title}</h2>
+        </a>
+      </div>
+    )}
+  </div>
+  <div class="content-nav-item next">
+    {next && (
+      <div class="nav-direction next"><a href={`/${typeSlug}/${next.id.replace(/\.md$/, '')}`}>NEXT {typeLabel} →</a></div>
+      <div class="nav-thumbnail next">
+        <a href={`/${typeSlug}/${next.id.replace(/\.md$/, '')}`}>
+          <img
+            src={next.data.youtubeId
+              ? `https://img.youtube.com/vi/${next.data.youtubeId}/mqdefault.jpg`
+              : next.data.image}
+            alt={next.data.title}
+          />
+        </a>
+      </div>
+      <div class="nav-title next">
+        <a href={`/${typeSlug}/${next.id.replace(/\.md$/, '')}`}>
+          <h2>{next.data.title}</h2>
+        </a>
+      </div>
+    )}
+  </div>
+</nav>

@@ -1,0 +1,68 @@
+---
+import CardThumb from './CardThumb.astro';
+import CardBody from './CardBody.astro';
+
+const { entries, title, desc, emoji, typeSlug, otherTypes } = Astro.props;
+const sorted = entries.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
+const type = typeSlug.slice(0, -1).toUpperCase();
+---
+
+<div class="container">
+
+  <header class="page-header">
+    <div class="page-breadcrumb">
+      <a href="/">/ home</a> / <a href={`/${typeSlug}`}>{typeSlug}</a>
+    </div>
+    <h1 class="page-title">{emoji} {title}</h1>
+    <p class="page-desc">{desc}</p>
+  </header>
+
+  <section class="content-section" id="content">
+    <div class="section-header">
+      <h2>// ALL {title}</h2>
+      <div class="section-line"></div>
+      <div class="section-count">{sorted.length} ENTRIES</div>
+    </div>
+
+    {sorted.length > 0 ? (
+      <div class="content-grid">
+        {sorted.map((entry) => (
+          <a href={`/${typeSlug}/${entry.id.replace(/\.md$/, '')}`} class="card">
+            <CardThumb
+              youtubeId={entry.data.youtubeId}
+              image={entry.data.image}
+              title={entry.data.title}
+              type={type}
+              number={entry.data.number}
+            />
+            <CardBody
+              title={entry.data.title}
+              desc={entry.data.desc}
+              date={entry.data.date}
+              type={type}
+              number={entry.data.number}
+            />
+          </a>
+        ))}
+      </div>
+    ) : (
+      <div class="empty-state">
+        <div class="empty-title">// NO ENTRIES YET</div>
+        <p>Check back soon — {typeSlug} are being written.</p>
+      </div>
+    )}
+  </section>
+
+  <div class="other-types">
+    <div class="section-header">
+      <h2>// EXPLORE OTHER TYPES</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="type-links">
+      {otherTypes.map((t) => (
+        <a href={`/${t.slug}`} class="type-link">{t.emoji} {t.label}</a>
+      ))}
+    </div>
+  </div>
+
+</div>

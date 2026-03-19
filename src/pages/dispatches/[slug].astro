@@ -1,5 +1,8 @@
 ---
 import Base from '../../layouts/Base.astro';
+import PostHeader from '../../components/PostHeader.astro';
+import VideoSection from '../../components/VideoSection.astro';
+import PostNav from '../../components/PostNav.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -13,6 +16,7 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 const { title, date, youtubeId, image, desc, number, tag } = entry.data;
+
 const dispatches = await getCollection('dispatches');
 const sorted = dispatches.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
 const index = sorted.findIndex(p => p.id === entry.id);
@@ -20,94 +24,34 @@ const prev = sorted[index + 1] ?? null;
 const next = sorted[index - 1] ?? null;
 ---
 
-<Base>
+<Base title={title} description={desc}>
+  <div class="container">
 
-<div class="container">
+    <PostHeader
+      {title}
+      {date}
+      {number}
+      {youtubeId}
+      {image}
+      type="DISPATCH"
+      typeSlug="dispatches"
+    />
 
-  <!-- Header -->
-  <header class="content-header">
-    <!-- Breadcrumbs -->
-    <div class="content-breadcrumb">
-      <a href="/">/ home</a> / <a href="/dispatches">dispatches</a> / {entry.id.replace(/\.md$/, '') }
-    </div>
-    
-    <!-- Post heading -->
-    <div class="content-type">// DISPATCH_{number}</div>
-    <h1 class="content-title">{title}</h1>
-    <div class="content-meta">
-      <span>{date}</span>
-      <span class="dot">■</span>
-      <span>video + post</span>
-      <span class="dot">■</span>
-      <span style="color:var(--cyan)">{tag ?? 'DISPATCH'}</span>
-    </div>
-  </header>
-
-  <!-- Video -->
-  <section class="video-section" aria-label="Video">
-    <div class="video-label">
-      <span>seth@mraudiofeedback:~$</span> mpv --ytdl {youtubeId}
-    </div>
-    <div class="video-wrapper">
-      {youtubeId ? (
-        <iframe src={`https://www.youtube.com/embed/${youtubeId}?rel=0`} ... />
-      ) : image ? (
-        <img src={image} alt={title} class="feature-image" />
-      ) : (
-        <div class="video-placeholder">
-          <div class="video-placeholder-grid"></div>
-          <div style="width:48px;height:48px;border:2px solid #ffb700;display:flex;align-items:center;justify-content:center;color:#ffb700;font-size:20px;position:relative;z-index:1;">▶</div>
-          <p>VIDEO COMING SOON</p>
+    {youtubeId && (
+      <>
+        <VideoSection {youtubeId} {title} />
+        <div class="section-divider">
+          <span>// READ THE POST</span>
+          <div class="divider-line"></div>
         </div>
-      )}
-    </div>
-  </section>
+      </>
+    )}
 
-  <!-- Divider -->
-  <div class="section-divider">
-    <span>// READ THE POST</span>
-    <div class="divider-line"></div>
+    <article class="post-content" id="post">
+      <Content />
+    </article>
+
+    <PostNav {prev} {next} typeSlug="dispatches" typeLabel="dispatch" />
+
   </div>
-
-  <!-- Post -->
-  <article class="post-content" id="post">
-    <Content />
-  </article>
-
-  <!-- Prev/Next nav -->
-  <nav class="content-nav" aria-label="Previous and next content">
-    <div class="content-nav-item">
-      {prev && (
-        <span>← PREVIOUS DISPATCH</span>
-        <div class="nav-thumbnail">
-          <a href={`/dispatches/${prev.id.replace(/\.md$/, '')}`}>
-            <img src={`https://img.youtube.com/vi/${prev.data.youtubeId}/mqdefault.jpg`} alt={prev.data.title} />
-          </a>
-        </div>
-        <div class="nav-title">
-          <a href={`/dispatches/${prev.id.replace(/\.md$/, '')}`}>
-            <h2>{prev.data.title}</h2>
-          </a>
-        </div>
-      )}
-    </div>
-    <div class="content-nav-item next">
-      {next && (
-        <div class="nav-direction next">NEXT DISPATCH →</div>
-        <div class="nav-thumbnail next">
-          <a href={`/dispatches/${next.id.replace(/\.md$/, '')}`}>
-            <img src={`https://img.youtube.com/vi/${next.data.youtubeId}/mqdefault.jpg`} alt={next.data.title} />
-          </a>
-        </div>
-        <div class="nav-title next">
-          <a href={`/dispatches/${next.id.replace(/\.md$/, '')}`}>
-            <h2>{next.data.title}</h2>
-          </a>
-        </div>
-      )}
-    </div>
-  </nav>
-
-</div>
-
 </Base>

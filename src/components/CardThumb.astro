@@ -1,0 +1,22 @@
+---
+const { youtubeId, image, title, type, number } = Astro.props;
+---
+<div class="card-thumb">
+  {youtubeId && youtubeId !== '' ? (
+    <img
+      src={`https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`}
+      alt={title}
+      loading="lazy"
+    />
+  ) : image ? (
+    <img
+      src={image}
+      alt={title}
+      loading="lazy"
+    />
+  ) : (
+    <div class="thumb-grid"></div>
+  )}
+  <div class="thumb-scanlines"></div>
+  <div class="thumb-label">{type}_{number}</div>
+</div>

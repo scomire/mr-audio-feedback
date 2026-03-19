@@ -1,6 +1,7 @@
 ---
 title: "The Pains of Anonymously Creating a Tuta Email Account"
 date: "2026-03-06"
+image: "/images/tutamail-thumbnail.webp"
 youtubeId: ""
 desc: "I spent around 3 hours (so far) trying to create a Tuta email that has no trace of my identity on it (for the fun of it?). I underestimated the level of complexity that required and honestly, I’m not even sure it will be completely anonymous."
 number: "002"

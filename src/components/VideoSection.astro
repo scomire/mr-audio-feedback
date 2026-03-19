@@ -1,0 +1,24 @@
+---
+const { youtubeId, title } = Astro.props;
+---
+<section class="video-section" aria-label="Video">
+  <div class="video-label">
+    <span>seth@mraudiofeedback:~$</span> mpv --ytdl {youtubeId}
+  </div>
+  <div class="video-wrapper">
+    {youtubeId ? (
+      <iframe
+        src={`https://www.youtube.com/embed/${youtubeId}?rel=0`}
+        title={title}
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      />
+    ) : (
+      <div class="video-placeholder">
+        <div class="video-placeholder-grid"></div>
+        <div style="width:48px;height:48px;border:2px solid #ffb700;display:flex;align-items:center;justify-content:center;color:#ffb700;font-size:20px;position:relative;z-index:1;">▶</div>
+        <p>VIDEO COMING SOON</p>
+      </div>
+    )}
+  </div>
+</section>

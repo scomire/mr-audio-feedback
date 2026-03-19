@@ -1,0 +1,29 @@
+---
+const { title, date, number, type, typeSlug, youtubeId, image } = Astro.props;
+---
+<header class="content-header">
+  <div class="content-breadcrumb">
+    <a href="/">/ home</a> / <a href={`/${typeSlug}`}>{typeSlug}</a> / {type}_{number}
+  </div>
+  <div class="content-header-inner">
+    {(youtubeId || image) && (
+      <div class="content-thumb">
+        {youtubeId ? (
+          <img
+            src={`https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`}
+            alt={title}
+          />
+        ) : (
+          <img src={image} alt={title} />
+        )}
+      </div>
+    )}
+    <div class="content-header-text">
+      <h1 class="content-title">{title}</h1>
+      <div class="content-meta">
+        <span class="dot"></span>
+        <span class="after-dot">{date}</span>
+      </div>
+    </div>
+  </div>
+</header>

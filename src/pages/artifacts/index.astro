@@ -1,85 +1,23 @@
 ---
 import Base from '../../layouts/Base.astro';
+import CategoryIndex from '../../components/CategoryIndex.astro';
 import { getCollection } from 'astro:content';
 
-const artifacts = await getCollection('artifacts');
-const sorted = artifacts.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
+const entries = await getCollection('artifacts');
 ---
 
 <Base title="Artifacts" description="Physical media, vintage tech, and the case for owning your stuff.">
-
-  <div class="container">
-
-    <header class="page-header">
-      <div class="page-breadcrumb">
-        <a href="/">/ home</a> / <a href="/artifacts">artifacts</a>
-      </div>
-      <h1 class="page-title">⚙️ ARTIFACTS</h1>
-      <p class="page-desc">
-        Physical media, vintage tech, and the case for owning your stuff.
-      </p>
-    </header>
-
-    <section class="content-section" id="content">
-      <div class="section-header">
-        <h2>// ALL ARTIFACTS</h2>
-        <div class="section-line"></div>
-        <div class="section-count">{sorted.length} ENTRIES</div>
-      </div>
-
-      {sorted.length > 0 ? (
-        <div class="content-grid">
-          {sorted.map((entry) => (
-            <a href={`/artifacts/${entry.id.replace(/\.md$/, '')}`} class="card">
-              <div class="card-thumb">
-                {entry.data.youtubeId ? (
-                  <img
-                    src={`https://img.youtube.com/vi/${entry.data.youtubeId}/maxresdefault.jpg`}
-                    alt={entry.data.title}
-                    loading="lazy"
-                  />
-                ) : (
-                  <div class="thumb-grid"></div>
-                )}
-                <div class="thumb-scanlines"></div>
-                <div class="thumb-label">artifact_{entry.data.number}</div>
-              </div>
-              <div class="card-body">
-                <div class="card-meta">
-                  <span class="card-date">{entry.data.date}</span>
-                </div>
-                <h2 class="card-title">{entry.data.title}</h2>
-                <p class="card-desc">{entry.data.desc}</p>
-                <div class="card-footer">
-                  <span class="dot">■</span> watch
-                  <span class="dot">■</span> read
-                  <span class="dot">■</span> artifact_{entry.data.number}
-                </div>
-              </div>
-            </a>
-          ))}
-        </div>
-      ) : (
-        <div class="empty-state">
-          <div class="empty-title">// NO ENTRIES YET</div>
-          <p>Check back soon — artifacts are being written.</p>
-        </div>
-      )}
-    </section>
-
-    <div class="other-types">
-      <div class="section-header">
-        <h2>// EXPLORE OTHER TYPES</h2>
-        <div class="section-line"></div>
-      </div>
-      <div class="type-links">
-        <a href="/signals" class="type-link">📡 SIGNALS</a>
-        <a href="/intercepts" class="type-link">👁️ INTERCEPTS</a>
-        <a href="/protocols" class="type-link">⚙️ PROTOCOLS</a>
-        <a href="/dispatches" class="type-link">🛠️ DISPATCHES</a>
-      </div>
-    </div>
-
-  </div>
-
+  <CategoryIndex
+    {entries}
+    title="ARTIFACTS"
+    desc="Physical media, vintage tech, and the case for owning your stuff."
+    emoji="📼"
+    typeSlug="artifacts"
+    otherTypes={[
+      { slug: 'signals', emoji: '📡', label: 'SIGNALS' },
+      { slug: 'protocols', emoji: '⚙️', label: 'PROTOCOLS' },
+      { slug: 'intercepts', emoji: '👁️', label: 'INTERCEPTS' },
+      { slug: 'dispatches', emoji: '🛠️', label: 'DISPATCHES' },
+    ]}
+  />
 </Base>

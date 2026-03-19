@@ -1,86 +1,23 @@
 ---
 import Base from '../../layouts/Base.astro';
+import CategoryIndex from '../../components/CategoryIndex.astro';
 import { getCollection } from 'astro:content';
 
-const intercepts = await getCollection('intercepts');
-const sorted = intercepts.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
+const entries = await getCollection('intercepts');
 ---
 
 <Base title="Intercepts" description="Deconstructions of big tech, surveillance capitalism, and the systems that shape your digital life.">
-
-  <div class="container">
-
-    <header class="page-header">
-      <div class="page-breadcrumb">
-        <a href="/">/ home</a> / <a href="/intercepts">intercepts</a>
-      </div>
-      <h1 class="page-title">👁️ INTERCEPTS</h1>
-      <p class="page-desc">
-        Deconstructions of big tech, surveillance capitalism, and the systems that shape your digital life.
-      </p>
-    </header>
-
-    <section class="content-section" id="content">
-      <div class="section-header">
-        <h2>// ALL INTERCEPTS</h2>
-        <div class="section-line"></div>
-        <div class="section-count">{sorted.length} ENTRIES</div>
-      </div>
-
-      {sorted.length > 0 ? (
-        <div class="content-grid">
-          {sorted.map((entry) => (
-            <a href={`/intercepts/${entry.id.replace(/\.md$/, '')}`} class="card">
-              <div class="card-thumb">
-                {entry.data.youtubeId ? (
-                  <img
-                    src={`https://img.youtube.com/vi/${entry.data.youtubeId}/maxresdefault.jpg`}
-                    alt={entry.data.title}
-                    loading="lazy"
-                  />
-                ) : (
-                  <div class="thumb-grid"></div>
-                )}
-                <div class="thumb-scanlines"></div>
-
-                <div class="thumb-label">intercept_{entry.data.number}</div>
-              </div>
-              <div class="card-body">
-                <div class="card-meta">
-                  <span class="card-date">{entry.data.date}</span>
-                </div>
-                <h2 class="card-title">{entry.data.title}</h2>
-                <p class="card-desc">{entry.data.desc}</p>
-                <div class="card-footer">
-                  <span class="dot">■</span> watch
-                  <span class="dot">■</span> read
-                  <span class="dot">■</span> intercept_{entry.data.number}
-                </div>
-              </div>
-            </a>
-          ))}
-        </div>
-      ) : (
-        <div class="empty-state">
-          <div class="empty-title">// NO ENTRIES YET</div>
-          <p>Check back soon — intercepts are being written.</p>
-        </div>
-      )}
-    </section>
-
-    <div class="other-types">
-      <div class="section-header">
-        <h2>// EXPLORE OTHER TYPES</h2>
-        <div class="section-line"></div>
-      </div>
-      <div class="type-links">
-        <a href="/signals" class="type-link">📡 SIGNALS</a>
-        <a href="/protocols" class="type-link">⚙️ PROTOCOLS</a>
-        <a href="/artifacts" class="type-link">📼 ARTIFACTS</a>
-        <a href="/dispatches" class="type-link">🛠️ DISPATCHES</a>
-      </div>
-    </div>
-
-  </div>
-
+  <CategoryIndex
+    {entries}
+    title="INTERCEPTS"
+    desc="Deconstructions of big tech, surveillance capitalism, and the systems that shape your digital life."
+    emoji="👁️"
+    typeSlug="intercepts"
+    otherTypes={[
+      { slug: 'signals', emoji: '📡', label: 'SIGNALS' },
+      { slug: 'protocols', emoji: '⚙️', label: 'PROTOCOLS' },
+      { slug: 'artifacts', emoji: '📼', label: 'ARTIFACTS' },
+      { slug: 'dispatches', emoji: '🛠️', label: 'DISPATCHES' },
+    ]}
+  />
 </Base>

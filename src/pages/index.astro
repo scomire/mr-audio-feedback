@@ -24,7 +24,7 @@ const featured = allContent[0];
 
   <!-- Boot Sequence -->
   <div id="boot" class="boot">
-    <div class="boot__line">INITIALIZING MR. AUDIO FEEDBACK v1.0 ................... [OK]</div>
+    <div class="boot__line">INITIALIZING MR. AUDIO FEEDBACK v1.0 .................... [OK]</div>
     <div class="boot__line">Loading digital sovereignty modules ..................... [OK]</div>
     <div class="boot__line">Mounting self-hosted filesystems ........................ [OK]</div>
     <div class="boot__line">Purging third-party trackers ............................ [OK]</div>
@@ -211,31 +211,30 @@ const featured = allContent[0];
         {allContent.map((ep) => (
           <a href={`/${ep.typeSlug}/${ep.slug}`} class="card" data-type={ep.type} style="display:none;">
             <div class="card-thumb">
-              {ep.youtubeId ? (
+              {ep.youtubeId && ep.youtubeId !== '' ? (
                 <img
                   src={`https://img.youtube.com/vi/${ep.youtubeId}/maxresdefault.jpg`}
                   alt={ep.title}
                   loading="lazy"
                 />
+              ) : ep.image ? (
+                <img
+                  src={ep.image}
+                  alt={ep.title}
+                  loading="lazy"
+                />
               ) : (
-                <div class="thumb-gradient--1">
-                  <div class="thumb-grid"></div>
-                </div>
+                <div class="thumb-grid"></div>
               )}
               <div class="thumb-scanlines"></div>
               <div class="thumb-label">{ep.type}_{ep.number}</div>
             </div>
             <div class="card-body">
-              <div class="card-meta">
-                <span class="card-date">{ep.date}</span>
-                <span class="card-tag">{ep.type}</span>
-              </div>
-              <h3 class="card-title">{ep.title}</h3>
+              <h2 class="card-title">{ep.title}</h2>
               <p class="card-desc">{ep.desc}</p>
               <div class="card-footer">
-                <span class="dot">■</span> watch
-                <span class="dot">■</span> read
-                <span class="dot">■</span> {ep.type}_{ep.number}
+                <span class="dot"></span>
+                <span class="after-dot">{ep.date}</span>
               </div>
             </div>
           </a>
@@ -630,7 +629,7 @@ const featured = allContent[0];
     cards.forEach(c => c.style.display = 'none');
 
     // show latest 3 matching
-    matching.slice(0, 3).forEach(c => c.style.display = 'block');
+    matching.slice(0, 3).forEach(c => c.style.display = 'flex');
   }
 
   // init on load

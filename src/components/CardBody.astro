@@ -1,0 +1,11 @@
+---
+const { title, desc, date, type, number } = Astro.props;
+---
+<div class="card-body">
+  <h2 class="card-title">{title}</h2>
+  <p class="card-desc">{desc}</p>
+  <div class="card-footer">
+    <span class="dot"></span>
+    <span class="after-dot">{date}</span>
+  </div>
+</div>
