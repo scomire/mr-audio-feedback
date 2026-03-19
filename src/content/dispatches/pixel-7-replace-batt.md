@@ -1,6 +1,6 @@
 ---
 title: "How to Install a New Battery in a Google Pixel 7"
-date: "2026-17-03"
+date: "2026-03-17"
 youtubeId: ""
 desc: "Step-by-step: get Nextcloud running on your own hardware with Docker Compose. Own your files. No cloud subscriptions required."
 number: "001"
