@@ -17,6 +17,7 @@ const allContent = [
 ].sort((a, b) => new Date(b.date) - new Date(a.date));
 
 const featured = allContent[0];
+const archiveCards = allContent.slice(0, 3);
 ---
 
 <Base title="Mr. Audio Feedback" description="Encouraging digital ownership. Self-hosting, physical media, right to repair, and practical digital sovereignty. No hype, no manifestos — just ways to take your digital life back.">
@@ -210,7 +211,7 @@ const featured = allContent[0];
       </div>
 
       <div class="content-grid">
-        {allContent.map((ep) => (
+        {archiveCards.map((ep) => (
           <a href={`/${ep.typeSlug}/${ep.slug}`} class="card" data-type={ep.type}>
             <div class="card-thumb">
               {ep.youtubeId ? (
