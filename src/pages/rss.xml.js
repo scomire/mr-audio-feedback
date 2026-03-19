@@ -2,11 +2,11 @@ import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
 
 export async function GET(context) {
-  const signals = await getCollection('signals');
-  const protocols = await getCollection('protocols');
-  const intercepts = await getCollection('intercepts');
-  const artifacts = await getCollection('artifacts');
-  const dispatches = await getCollection('dispatches');
+  const signals = await getCollection('signals').catch(() => []);
+  const protocols = await getCollection('protocols').catch(() => []);
+  const intercepts = await getCollection('intercepts').catch(() => []);
+  const artifacts = await getCollection('artifacts').catch(() => []);
+  const dispatches = await getCollection('dispatches').catch(() => []);
 
   const allContent = [
     ...signals,
@@ -14,7 +14,9 @@ export async function GET(context) {
     ...intercepts,
     ...artifacts,
     ...dispatches,
-  ].sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
+  ]
+  .filter(entry => entry.data.title && entry.data.date && entry.data.desc)
+  .sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
 
   return rss({
     title: 'Mr. Audio Feedback',
