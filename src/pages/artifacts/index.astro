@@ -12,9 +12,8 @@ const sorted = artifacts.sort((a, b) => new Date(b.data.date) - new Date(a.data.
 
     <header class="page-header">
       <div class="page-breadcrumb">
-        <a href="/">~/</a> / artifacts
+        <a href="/">/ home</a> / <a href="/artifacts">artifacts</a>
       </div>
-      <div class="page-type">// CONTENT TYPE</div>
       <h1 class="page-title">⚙️ ARTIFACTS</h1>
       <p class="page-desc">
         Physical media, vintage tech, and the case for owning your stuff.
@@ -43,7 +42,6 @@ const sorted = artifacts.sort((a, b) => new Date(b.data.date) - new Date(a.data.
                   <div class="thumb-grid"></div>
                 )}
                 <div class="thumb-scanlines"></div>
-                <div class="play-icon">▶</div>
                 <div class="thumb-label">artifact_{entry.data.number}</div>
               </div>
               <div class="card-body">
