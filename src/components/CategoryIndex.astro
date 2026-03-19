@@ -4,7 +4,14 @@ import CardBody from './CardBody.astro';
 
 const { entries, title, desc, emoji, typeSlug, otherTypes } = Astro.props;
 const sorted = entries.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
-const type = typeSlug.slice(0, -1).toUpperCase();
+const typeMap = {
+  signals: 'SIGNAL',
+  protocols: 'PROTOCOL',
+  intercepts: 'INTERCEPT',
+  artifacts: 'ARTIFACT',
+  dispatches: 'DISPATCH',
+};
+const type = typeMap[typeSlug] ?? typeSlug.toUpperCase();
 ---
 
 <div class="container">

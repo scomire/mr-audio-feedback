@@ -1,4 +1,5 @@
 ---
+const { pathname } = Astro.url;
 ---
 <a href="#main" class="skip-link">Skip to content</a>
 
@@ -7,7 +8,7 @@
     <div class="nav-inner">
       <a href="/" class="nav-logo">MR. AUDIO <span>FEEDBACK</span></a>
       <ul class="nav-links">
-        <li><a href="/">_HOME</a></li>
+        <li><a href="/" class={pathname === '/' ? 'nav-active' : ''}>_HOME</a></li>
         <li class="nav-dropdown">
           <span class="nav-dropdown-trigger">_CATEGORIES</span>
           <ul class="nav-dropdown-menu">
@@ -18,7 +19,7 @@
             <li><a href="/dispatches">🛠️ DISPATCHES</a></li>
           </ul>
         </li>
-        <li><a href="/#about">_ABOUT</a></li>
+        <li><a href="/about" class={pathname === '/about' ? 'nav-active' : ''}>_ABOUT</a></li>
         <li><a href="/rss.xml">_RSS</a></li>
         <li><a href="https://youtube.com/@mraudiofeedback" target="_blank" aria-label="Mr. Audio Feedback on YouTube (opens in new tab)">_YOUTUBE</a></li>
       </ul>
@@ -27,6 +28,12 @@
 </nav>
 
 <style>
+  .nav-active {
+  background: var(--text-dim);
+  color: var(--bg2) !important;
+  padding: 2px 8px;
+}
+  
   .nav-dropdown {
     position: relative;
   }
@@ -65,7 +72,8 @@
     padding: 8px 0;
     min-width: 200px;
     z-index: 200;
-    margin-top: 12px;
+    margin-top: 0;
+    padding-top: 12px;
   }
 
   .nav-dropdown:hover .nav-dropdown-menu {

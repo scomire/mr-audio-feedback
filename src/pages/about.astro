@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="About — Mr. Audio Feedback" description="About Seth and Mr. Audio Feedback.">
+  <div class="container">
+
+    <header class="page-header">
+      <div class="page-breadcrumb">
+        <a href="/">/ home</a> / about
+      </div>
+      <h1 class="page-title">// WHOAMI</h1>
+    </header>
+
+    <div class="terminal">
+      <div class="terminal__bar"></div>
+      <div class="terminal__inner">
+        <div class="terminal__line">
+          <span class="terminal__prompt">seth@mraudiofeedback:~$</span> <span class="terminal__cmd">cat about.txt</span>
+        </div>
+        <div class="terminal__line">
+          <span class="terminal__out" style="color:var(--text);padding-left:0;line-height:2;">
+            I'm Seth. I spent years reviewing headphones and audio gear, but I've realized the tech we buy is becoming increasingly restricted.<br /><br />
+            Between software we only <span style="color:var(--cyan)">"license"</span> and hardware designed to be unrepairable, the virtues of true ownership are fading.<br /><br />
+            This site is about moving from being a <span style="color:var(--amber)">user</span> back to being an <span style="color:var(--amber)">owner</span>.<br /><br />
+            Each signal, protocol, intercept, artifact, or dispatch is a video + a written post. Watch it or read it — your call. No algorithms deciding what you see next. Just a site you can bookmark.
+          </span>
+        </div>
+        <div class="terminal__line" style="margin-top:8px;">
+          <span class="terminal__prompt">seth@mraudiofeedback:~$</span> <span class="terminal__cmd">cat links.txt</span>
+        </div>
+        <div class="terminal__line">
+          <span class="terminal__out">→ <a href="https://youtube.com/@mraudiofeedback" target="_blank" style="color:var(--cyan);text-decoration:none;">youtube.com/@mraudiofeedback</a></span>
+        </div>
+        <div class="terminal__line">
+          <span class="terminal__out">→ <a href="/rss.xml" style="color:var(--cyan);text-decoration:none;">mraudiofeedback.com/rss.xml</a> <span style="color:var(--amber-dim)">// no algorithm required</span></span>
+        </div>
+        <div class="terminal__line">
+          <span class="terminal__prompt">seth@mraudiofeedback:~$</span> <span class="terminal__cmd">_</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</Base>
