@@ -5,7 +5,7 @@ const contentSchema = z.object({
   title: z.string(),
   date: z.string(),
   youtubeId: z.string().optional(),
-  image: z.string(),optional(),
+  image: z.string().optional(),
   desc: z.string(),
   number: z.string(),
   tag: z.string().optional(),
