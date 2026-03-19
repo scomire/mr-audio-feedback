@@ -25,7 +25,7 @@ export async function GET(context) {
         description: entry.data.desc,
         link: `/${entry.collection}/${entry.id.replace(/\.md$/, '')}/`,
       }))
-    : [{ title: 'Coming Soon', description: 'Content coming soon.', link: context.site }];
+    : [{ title: 'Coming Soon', description: 'Content coming soon.', link: context.site.toString() }];
 
   return rss({
     title: 'Mr. Audio Feedback',
