@@ -1,4 +1,5 @@
 ---
+import Search from './Search.astro';
 const { pathname } = Astro.url;
 ---
 <a href="#main" class="skip-link">Skip to content</a>
@@ -23,6 +24,7 @@ const { pathname } = Astro.url;
         <li><a href="/rss.xml">_RSS</a></li>
         <li><a href="https://youtube.com/@mraudiofeedback" target="_blank" aria-label="Mr. Audio Feedback on YouTube (opens in new tab)">_YOUTUBE</a></li>
       </ul>
+      <Search />
     </div>
   </div>
 </nav>

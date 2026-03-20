@@ -24,7 +24,7 @@ const prev = sorted[index + 1] ?? null;
 const next = sorted[index - 1] ?? null;
 ---
 
-<Base title={title} description={desc}>
+<Base title={title} description={desc} ogImage={youtubeId ? `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg` : image ?? null}>
   <div class="container">
 
     <PostHeader
@@ -51,6 +51,23 @@ const next = sorted[index - 1] ?? null;
       <Content />
     </article>
 
+    <script src="https://giscus.app/client.js"
+      data-repo="scomire/mr-audio-feedback"
+      data-repo-id="R_kgDORppsPA"
+      data-category="Announcements"
+      data-category-id="DIC_kwDORppsPM4C4zaF"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="transparent_dark"
+      data-lang="en"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async>
+    </script>
+    
     <PostNav {prev} {next} typeSlug="intercepts" typeLabel="intercept" />
 
   </div>

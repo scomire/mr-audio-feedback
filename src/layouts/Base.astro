@@ -1,7 +1,12 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-const { title, description } = Astro.props;
+const { title, description, ogImage } = Astro.props;
+const siteUrl = 'https://mraudiofeedback.com';
+const defaultImage = `${siteUrl}/images/og-default.webp`;
+const resolvedImage = ogImage 
+  ? ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`
+  : defaultImage;
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +15,20 @@ const { title, description } = Astro.props;
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>{title} — Mr. Audio Feedback</title>
 <meta name="description" content={description} />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={siteUrl} />
+<meta property="og:title" content={`${title} — Mr. Audio Feedback`} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={resolvedImage} />
+<meta property="og:site_name" content="Mr. Audio Feedback" />
+
+<!-- Twitter/X Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={`${title} — Mr. Audio Feedback`} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={resolvedImage} />
+<link rel="icon" type="image/webp" href="/images/favicon.webp" />
 <link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
 <style is:global>
   :root {
@@ -127,6 +145,7 @@ const { title, description } = Astro.props;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
   }
 
   .nav-logo {
@@ -141,38 +160,40 @@ const { title, description } = Astro.props;
 
   .nav-logo span { color: var(--cyan); }
 
-.nav-links {
-  display: flex;
-  gap: 32px;
-  list-style: none;
-}
+  .nav-links {
+    display: flex;
+    gap: 10px;
+    list-style: none;
+    flex: 1;
+    justify-content: center;
+  }
 
-.nav-links a {
-  text-decoration: none;
-  font-size: 16px;
-  letter-spacing: 1px;
-  transition: color 0.2s;
-}
+  .nav-links a {
+    text-decoration: none;
+    font-size: 16px;
+    letter-spacing: 1px;
+    transition: color 0.2s;
+  }
 
-.nav-links a:link,
-.nav-links a:visited {
-  color: var(--text-dim);
-  text-decoration: none;
-}
+  .nav-links a:link,
+  .nav-links a:visited {
+    color: var(--text-dim);
+    text-decoration: none;
+  }
 
-.nav-links a::before {
-  content: '> ';
-  color: var(--amber);
-  opacity: 0;
-  transition: opacity 0.2s;
-}
+  .nav-links a::before {
+    content: '> ';
+    color: var(--amber);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
 
-.nav-links a:hover {
-  color: var(--amber);
-  text-decoration: none;
-}
+  .nav-links a:hover {
+    color: var(--amber);
+    text-decoration: none;
+  }
 
-.nav-links a:hover::before { opacity: 1; }
+  .nav-links a:hover::before { opacity: 1; }
 
   /* ── Container ── */
   .container {
@@ -211,7 +232,7 @@ const { title, description } = Astro.props;
 
   /* Header */
   .content-header {
-    padding: 60px 0 40px;
+    padding: 20px 0 40px;
     border-bottom: 1px solid rgba(255,183,0,0.1);
   }
 
@@ -350,7 +371,7 @@ const { title, description } = Astro.props;
 
   /* Post content */
   .post-content {
-    padding-bottom: 80px;
+    padding: 32px 0;
   }
 
   .post-content h2 {
