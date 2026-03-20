@@ -166,14 +166,20 @@ const featured = allContent[0];
           <div class="featured__thumb">
             {featured.youtubeId ? (
               <img
-                src={`https://img.youtube.com/vi/${featured.youtubeId}/maxresdefault.jpg`}
-                alt={featured.title}
-                loading="lazy"
+                  src={`https://img.youtube.com/vi/${featured.youtubeId}/maxresdefault.jpg`}
+                  alt={featured.title}
+                  loading="lazy"
               />
+            ) : featured.image ? (
+                <img
+                    src={featured.image}
+                    alt={featured.title}
+                    loading="lazy"
+                />
             ) : (
-              <div class="thumb-gradient--1">
-                <div class="featured__thumb-grid"></div>
-              </div>
+                <div class="thumb-gradient--1">
+                    <div class="featured__thumb-grid"></div>
+                </div>
             )}
             <div class="featured__thumb-scanlines"></div>
             <a href={`/${featured.typeSlug}/${featured.slug}`} class="featured__play-link"></a>
@@ -182,7 +188,7 @@ const featured = allContent[0];
             <div class="featured__tag">// {featured.type}</div>
             <h2 class="featured__title">{featured.title}</h2>
             <p class="featured__desc">{featured.desc}</p>
-            <a href={`/${featured.typeSlug}/${featured.slug}`} class="btn">WATCH + READ →</a>
+            <a href={`/${featured.typeSlug}/${featured.slug}`} class="btn">READ MORE →</a>
           </div>
         </div>
       </div>
@@ -323,8 +329,7 @@ const featured = allContent[0];
 
   /* Hero */
   .hero {
-    padding: 80px 0 60px;
-    border-bottom: 1px solid rgba(255, 183, 0, 0.1);
+    margin: 0;
   }
 
   .hero__prompt {
@@ -415,7 +420,7 @@ const featured = allContent[0];
   .terminal {
     background: #050503;
     border: 1px solid var(--amber-dim);
-    margin: 60px 0;
+    margin: 20px 0;
     position: relative;
   }
 
@@ -621,15 +626,17 @@ const featured = allContent[0];
 <script>
   function showCards(filter) {
     const cards = Array.from(document.querySelectorAll('.card'));
-    const matching = filter === 'ALL'
-      ? cards
-      : cards.filter(c => c.dataset.type === filter);
+    const featuredType = cards[0]?.dataset.type;
 
-    // hide all first
+    const matching = filter === 'ALL'
+        ? cards
+        : cards.filter(c => c.dataset.type === filter);
+
     cards.forEach(c => c.style.display = 'none');
 
-    // show latest 3 matching
-    matching.slice(0, 3).forEach(c => c.style.display = 'flex');
+    const shouldSkip = filter === 'ALL' || filter === featuredType;
+    const offset = shouldSkip ? 1 : 0;
+    matching.slice(offset, offset + 3).forEach(c => c.style.display = 'flex');
   }
 
   // init on load

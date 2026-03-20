@@ -371,7 +371,7 @@ const resolvedImage = ogImage
 
   /* Post content */
   .post-content {
-    padding: 32px 0;
+    margin-bottom: 20px;
   }
 
   .post-content h2 {
@@ -379,9 +379,7 @@ const resolvedImage = ogImage
     font-size: 32px;
     color: var(--amber);
     letter-spacing: 2px;
-    margin: 48px 0 16px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid rgba(255,183,0,0.15);
+    margin: 16px 0 0;
   }
 
   .post-content h3 {
@@ -389,19 +387,19 @@ const resolvedImage = ogImage
     font-size: 24px;
     color: var(--cyan);
     letter-spacing: 1px;
-    margin: 32px 0 12px;
+    margin: 8px 0 0;
   }
 
   .post-content p {
     color: var(--text);
     font-size: 16px;
     line-height: 1.9;
-    margin-bottom: 24px;
+    margin-bottom: 8px;
   }
 
   .post-content ul, .post-content ol {
     padding-left: 24px;
-    margin-bottom: 24px;
+    margin-bottom: 8px;
   }
 
   .post-content li {
@@ -475,7 +473,7 @@ const resolvedImage = ogImage
   footer {
     border-top: 1px solid rgba(255,183,0,0.1);
     padding: 40px 0;
-    margin-top: 60px;
+    margin-top: 20px;
   }
 
   .footer-inner {
@@ -549,7 +547,7 @@ const resolvedImage = ogImage
   }
 
   /* ── Shared section styles ── */
-  section { padding: 48px 0 80px; }
+  section { padding: 20px 0; }
 
   .section-header {
     display: flex;
@@ -757,6 +755,7 @@ const resolvedImage = ogImage
     gap: 2px;
     margin-bottom: 60px;
     width: 100%;
+    align-items: start;
   }
 
   .content-nav a {
@@ -813,6 +812,20 @@ const resolvedImage = ogImage
   }
 
   .nav-title h2:hover { color: var(--amber-dim); }
+
+  .nav-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+  }
+
+  .nav-thumbnail {
+      position: relative;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+  }
 
   /* ── Other types nav ── */
   .other-types { padding: 0 0 80px; }

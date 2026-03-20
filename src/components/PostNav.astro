@@ -4,7 +4,7 @@ const { prev, next, typeSlug, typeLabel } = Astro.props;
 <nav class="content-nav" aria-label="Previous and next content">
   <div class="content-nav-item">
     {prev && (
-      <span><a href={`/${typeSlug}/${prev.id.replace(/\.md$/, '')}`}>← PREVIOUS {typeLabel}</a></span>
+      <div class="nav-direction"><a href={`/${typeSlug}/${prev.id.replace(/\.md$/, '')}`}>← PREVIOUS {typeLabel}</a></div>
       <div class="nav-thumbnail">
         <a href={`/${typeSlug}/${prev.id.replace(/\.md$/, '')}`}>
           <img
