@@ -14,8 +14,9 @@ const { title, date, number, type, typeSlug, youtubeId, image } = Astro.props;
             alt={title}
           />
         ) : (
-          <img src={image} alt={title} />
+          <img src={image} alt={title}/>
         )}
+        <div class="thumb-scanlines"></div>
       </div>
     )}
     <div class="content-header-text">

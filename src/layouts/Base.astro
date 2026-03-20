@@ -194,6 +194,8 @@ const { title, description } = Astro.props;
     aspect-ratio: 16/9;
     overflow: hidden;
     border: 1px solid var(--amber-dim);
+    position: relative;
+    overflow: hidden;
   }
 
   .content-thumb img {
@@ -637,26 +639,6 @@ const { title, description } = Astro.props;
       linear-gradient(rgba(255,183,0,0.03) 1px, transparent 1px),
       linear-gradient(90deg, rgba(255,183,0,0.03) 1px, transparent 1px);
     background-size: 20px 20px;
-  }
-
-  .play-icon {
-    width: 48px;
-    height: 48px;
-    border: 2px solid var(--amber);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--amber);
-    font-size: 18px;
-    box-shadow: 0 0 20px rgba(255,183,0,0.3);
-    transition: all 0.2s;
-    position: relative;
-    z-index: 2;
-  }
-
-  .card:hover .play-icon {
-    transform: scale(1.08);
-    box-shadow: 0 0 30px rgba(255,183,0,0.5);
   }
 
   .thumb-label {
